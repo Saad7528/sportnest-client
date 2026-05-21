@@ -161,88 +161,113 @@ export default function AddFacilityPage() {
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Name */}
-                            <div className="space-y-1">
-                                <label className="text-sm font-medium text-muted flex items-center">
-                                    <PlusCircle className="w-4 h-4 mr-1.5 text-primary" />
-                                    Facility Name
+                            <div className="space-y-2 group">
+                                <label className="text-xs font-bold text-muted uppercase tracking-wider block">
+                                    Facility Name <span className="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="text"
-                                    required
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    placeholder="e.g. Premium Football Turf Dhanmondi"
-                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                                />
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted group-focus-within:text-primary transition-colors duration-200">
+                                        <PlusCircle className="w-4 h-4" />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder="e.g. Premium Football Turf"
+                                        className="block w-full pl-10 pr-4 py-3 rounded-xl border border-glass-border bg-card/25 text-foreground placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 text-sm shadow-sm hover:bg-card/40"
+                                    />
+                                </div>
                             </div>
 
                             {/* Type */}
-                            <div className="space-y-1">
-                                <label className="text-sm font-medium text-muted flex items-center">
-                                    <Clock className="w-4 h-4 mr-1.5 text-primary" />
-                                    Sport Type
+                            <div className="space-y-2 group">
+                                <label className="text-xs font-bold text-muted uppercase tracking-wider block">
+                                    Sport Type <span className="text-red-500">*</span>
                                 </label>
-                                <select
-                                    value={type}
-                                    onChange={(e) => setType(e.target.value)}
-                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                                >
-                                    {SPORT_TYPES.map((t) => (
-                                        <option key={t} value={t}>
-                                            {t}
-                                        </option>
-                                    ))}
-                                </select>
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted">
+                                        <Clock className="w-4 h-4" />
+                                    </div>
+                                    <select
+                                        value={type}
+                                        onChange={(e) => setType(e.target.value)}
+                                        className="block w-full pl-10 pr-10 py-3 rounded-xl border border-glass-border bg-card/25 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 text-sm shadow-sm appearance-none cursor-pointer hover:bg-card/40"
+                                    >
+                                        {SPORT_TYPES.map((t) => (
+                                            <option key={t} value={t} className="bg-card text-foreground">
+                                                {t}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-muted">
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Location */}
-                            <div className="space-y-1">
-                                <label className="text-sm font-medium text-muted flex items-center">
-                                    <MapPin className="w-4 h-4 mr-1.5 text-primary" />
-                                    Venue Location (Address)
+                            <div className="space-y-2 group">
+                                <label className="text-xs font-bold text-muted uppercase tracking-wider block">
+                                    Venue Location <span className="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="text"
-                                    required
-                                    value={location}
-                                    onChange={(e) => setLocation(e.target.value)}
-                                    placeholder="e.g. Dhanmondi 15, Dhaka"
-                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                                />
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted group-focus-within:text-primary transition-colors duration-200">
+                                        <MapPin className="w-4 h-4" />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={location}
+                                        onChange={(e) => setLocation(e.target.value)}
+                                        placeholder="e.g. Dhanmondi 15, Dhaka"
+                                        className="block w-full pl-10 pr-4 py-3 rounded-xl border border-glass-border bg-card/25 text-foreground placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 text-sm shadow-sm hover:bg-card/40"
+                                    />
+                                </div>
                             </div>
 
                             {/* Capacity */}
-                            <div className="space-y-1">
-                                <label className="text-sm font-medium text-muted flex items-center">
-                                    <Users className="w-4 h-4 mr-1.5 text-primary" />
-                                    Capacity (Persons)
+                            <div className="space-y-2 group">
+                                <label className="text-xs font-bold text-muted uppercase tracking-wider block">
+                                    Capacity (Persons) <span className="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="number"
-                                    required
-                                    min="1"
-                                    value={capacity}
-                                    onChange={(e) => setCapacity(e.target.value)}
-                                    placeholder="e.g. 14"
-                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                                />
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted group-focus-within:text-primary transition-colors duration-200">
+                                        <Users className="w-4 h-4" />
+                                    </div>
+                                    <input
+                                        type="number"
+                                        required
+                                        min="1"
+                                        value={capacity}
+                                        onChange={(e) => setCapacity(e.target.value)}
+                                        placeholder="e.g. 14"
+                                        className="block w-full pl-10 pr-4 py-3 rounded-xl border border-glass-border bg-card/25 text-foreground placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 text-sm shadow-sm hover:bg-card/40"
+                                    />
+                                </div>
                             </div>
 
                             {/* Price per hour */}
-                            <div className="space-y-1">
-                                <label className="text-sm font-medium text-muted flex items-center">
-                                    <DollarSign className="w-4 h-4 mr-1.5 text-primary" />
-                                    Price Per Hour (৳)
+                            <div className="space-y-2 group">
+                                <label className="text-xs font-bold text-muted uppercase tracking-wider block">
+                                    Price Per Hour (৳) <span className="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="number"
-                                    required
-                                    min="100"
-                                    value={pricePerHour}
-                                    onChange={(e) => setPricePerHour(e.target.value)}
-                                    placeholder="e.g. 1200"
-                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                                />
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted group-focus-within:text-primary transition-colors duration-200">
+                                        <DollarSign className="w-4 h-4" />
+                                    </div>
+                                    <input
+                                        type="number"
+                                        required
+                                        min="100"
+                                        value={pricePerHour}
+                                        onChange={(e) => setPricePerHour(e.target.value)}
+                                        placeholder="e.g. 1200"
+                                        className="block w-full pl-10 pr-4 py-3 rounded-xl border border-glass-border bg-card/25 text-foreground placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 text-sm shadow-sm hover:bg-card/40"
+                                    />
+                                </div>
                             </div>
 
                             {/* Image Upload */}
