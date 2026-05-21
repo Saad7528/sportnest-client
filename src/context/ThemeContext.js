@@ -8,7 +8,7 @@ const ThemeContext = createContext({
 });
 
 export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState('dark'); // default to dark for premium aesthetic
+    const [theme, setTheme] = useState('dark'); 
 
     useEffect(() => {
         const storedTheme = localStorage.getItem('theme');
@@ -16,7 +16,6 @@ export function ThemeProvider({ children }) {
             setTheme(storedTheme);
             document.documentElement.classList.toggle('dark', storedTheme === 'dark');
         } else {
-            // Default to dark mode
             localStorage.setItem('theme', 'dark');
             document.documentElement.classList.add('dark');
         }

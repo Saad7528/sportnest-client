@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include', // Important to send cookies
+                credentials: 'include',
             });
 
             if (res.ok) {
