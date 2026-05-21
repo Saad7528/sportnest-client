@@ -37,6 +37,7 @@ export default function ManageFacilitiesPage() {
     const [editCapacity, setEditCapacity] = useState('');
     const [editSlots, setEditSlots] = useState([]);
     const [editDescription, setEditDescription] = useState('');
+    const [editImageUrl, setEditImageUrl] = useState('');
     const [editSubmitting, setEditSubmitting] = useState(false);
 
     const fetchOwnerFacilities = async () => {
@@ -100,6 +101,7 @@ export default function ManageFacilitiesPage() {
         setEditCapacity(facility.capacity);
         setEditSlots(facility.available_slots || []);
         setEditDescription(facility.description || '');
+        setEditImageUrl(facility.image_url || '');
         setIsEditOpen(true);
     };
 
@@ -133,7 +135,8 @@ export default function ManageFacilitiesPage() {
                     price_per_hour: parseFloat(editPrice),
                     capacity: parseInt(editCapacity),
                     available_slots: editSlots,
-                    description: editDescription
+                    description: editDescription,
+                    image_url: editImageUrl
                 }),
                 credentials: 'include'
             });
@@ -294,79 +297,108 @@ export default function ManageFacilitiesPage() {
                             exit={{ opacity: 0, scale: 0.95, y: 25 }}
                             className="bg-card glass border border-glass-border rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative z-10 overflow-y-auto max-h-[90vh] space-y-4"
                         >
-                            <div className="flex justify-between items-center pb-3 border-b border-glass-border">
-                                <h3 className="text-xl font-bold text-foreground">Edit Facility Information</h3>
+                            <div className="flex justify-between items-center pb-3 border-b border-glass-border/40">
+                                <div className="space-y-1">
+                                    <h3 className="text-xl font-bold text-foreground">Edit Facility Information</h3>
+                                    <p className="text-xs text-muted">Update your listed venue settings.</p>
+                                </div>
                                 <button
                                     onClick={() => setIsEditOpen(false)}
-                                    className="p-1 rounded-full hover:bg-glass-border/30 text-muted hover:text-foreground transition-colors cursor-pointer"
+                                    className="p-1.5 rounded-full hover:bg-glass-border/30 text-muted hover:text-foreground transition-colors cursor-pointer border border-transparent hover:border-glass-border"
                                 >
                                     <X className="w-5 h-5" />
                                 </button>
                             </div>
 
-                            <form onSubmit={handleEditSubmit} className="space-y-4 pt-2">
+                            <form onSubmit={handleEditSubmit} className="space-y-5 pt-2">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1">
-                                        <label className="text-xs font-bold text-muted uppercase">Name</label>
+                                        <label className="text-xs font-bold text-muted uppercase tracking-wider">Name</label>
                                         <input
                                             type="text"
                                             required
                                             value={editName}
                                             onChange={(e) => setEditName(e.target.value)}
-                                            className="block w-full px-3 py-2 text-sm rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                            className="block w-full px-3.5 py-2.5 text-sm rounded-xl border border-glass-border bg-glass-border/10 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all duration-200"
                                         />
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="text-xs font-bold text-muted uppercase">Sport Type</label>
+                                        <label className="text-xs font-bold text-muted uppercase tracking-wider">Sport Type</label>
                                         <select
                                             value={editType}
                                             onChange={(e) => setEditType(e.target.value)}
-                                            className="block w-full px-3 py-2 text-sm rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                            className="block w-full px-3.5 py-2.5 text-sm rounded-xl border border-glass-border bg-glass-border/10 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all duration-200"
                                         >
                                             {SPORT_TYPES.map((t) => (
-                                                <option key={t} value={t}>
+                                                <option key={t} value={t} className="bg-card text-foreground">
                                                     {t}
                                                 </option>
                                             ))}
                                         </select>
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="text-xs font-bold text-muted uppercase">Location</label>
+                                        <label className="text-xs font-bold text-muted uppercase tracking-wider">Location</label>
                                         <input
                                             type="text"
                                             required
                                             value={editLocation}
                                             onChange={(e) => setEditLocation(e.target.value)}
-                                            className="block w-full px-3 py-2 text-sm rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                            className="block w-full px-3.5 py-2.5 text-sm rounded-xl border border-glass-border bg-glass-border/10 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all duration-200"
                                         />
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="text-xs font-bold text-muted uppercase">Capacity (Persons)</label>
+                                        <label className="text-xs font-bold text-muted uppercase tracking-wider">Capacity (Persons)</label>
                                         <input
                                             type="number"
                                             required
                                             min="1"
                                             value={editCapacity}
                                             onChange={(e) => setEditCapacity(e.target.value)}
-                                            className="block w-full px-3 py-2 text-sm rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                            className="block w-full px-3.5 py-2.5 text-sm rounded-xl border border-glass-border bg-glass-border/10 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all duration-200"
                                         />
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="text-xs font-bold text-muted uppercase">Price Per Hour (৳)</label>
+                                        <label className="text-xs font-bold text-muted uppercase tracking-wider">Price Per Hour (৳)</label>
                                         <input
                                             type="number"
                                             required
                                             min="100"
                                             value={editPrice}
                                             onChange={(e) => setEditPrice(e.target.value)}
-                                            className="block w-full px-3 py-2 text-sm rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                            className="block w-full px-3.5 py-2.5 text-sm rounded-xl border border-glass-border bg-glass-border/10 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all duration-200"
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-bold text-muted uppercase tracking-wider">Image URL</label>
+                                        <input
+                                            type="text"
+                                            value={editImageUrl}
+                                            onChange={(e) => setEditImageUrl(e.target.value)}
+                                            placeholder="https://images.unsplash.com/photo-..."
+                                            className="block w-full px-3.5 py-2.5 text-sm rounded-xl border border-glass-border bg-glass-border/10 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all duration-200"
                                         />
                                     </div>
                                 </div>
 
+                                {editImageUrl && (
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-bold text-muted uppercase block tracking-wider">Image Preview</label>
+                                        <div className="w-full h-32 rounded-xl overflow-hidden border border-glass-border relative shadow-inner">
+                                            <img
+                                                src={editImageUrl}
+                                                alt="Edit Preview"
+                                                className="w-full h-full object-cover"
+                                                onError={(e) => {
+                                                    e.target.src = 'https://images.unsplash.com/photo-1540747737956-37872404a87a?w=800&q=80';
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+
                                 {/* Edit Available slots */}
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-muted uppercase block">Available Slots</label>
+                                    <label className="text-xs font-bold text-muted uppercase block tracking-wider">Available Slots</label>
                                     <div className="flex flex-wrap gap-1.5">
                                         {TIME_SLOTS.map((slot) => {
                                             const selected = editSlots.includes(slot);
@@ -375,9 +407,9 @@ export default function ManageFacilitiesPage() {
                                                     type="button"
                                                     key={slot}
                                                     onClick={() => handleEditSlotToggle(slot)}
-                                                    className={`px-3 py-1.5 rounded-xl text-xs font-medium border transition-all ${
+                                                    className={`px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer ${
                                                         selected
-                                                            ? 'bg-primary text-background border-transparent'
+                                                            ? 'bg-primary text-background border-transparent shadow-md shadow-primary/25 scale-[1.02]'
                                                             : 'glass border-glass-border hover:bg-glass-border/30 text-muted'
                                                     }`}
                                                 >
@@ -389,19 +421,19 @@ export default function ManageFacilitiesPage() {
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label className="text-xs font-bold text-muted uppercase">Description</label>
+                                    <label className="text-xs font-bold text-muted uppercase tracking-wider">Description</label>
                                     <textarea
                                         rows="3"
                                         value={editDescription}
                                         onChange={(e) => setEditDescription(e.target.value)}
-                                        className="block w-full px-3 py-2 text-sm rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                        className="block w-full px-3.5 py-2.5 text-sm rounded-xl border border-glass-border bg-glass-border/10 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all duration-200"
                                     />
                                 </div>
 
                                 <button
                                     type="submit"
                                     disabled={editSubmitting}
-                                    className="w-full mt-4 py-3 rounded-xl bg-primary text-background hover:bg-primary-hover font-bold text-sm shadow-md transition-all duration-200 flex justify-center items-center cursor-pointer"
+                                    className="w-full mt-4 py-3.5 rounded-xl bg-primary text-background hover:bg-primary-hover font-extrabold text-sm shadow-md transition-all duration-200 flex justify-center items-center cursor-pointer shadow-primary/25 active:scale-[0.99]"
                                 >
                                     {editSubmitting ? (
                                         <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
