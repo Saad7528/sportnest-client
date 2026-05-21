@@ -52,13 +52,11 @@ export default function HomePage() {
 
     return (
         <div className="flex-grow flex flex-col grid-pattern">
-            {/* HERO SECTION */}
             <section className="relative py-12 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-card-border overflow-hidden min-h-[85vh] flex items-center">
-                {/* Background glow orbs */}
                 <div className="glow-orb top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60"></div>
                 <div className="glow-orb-secondary bottom-10 right-10 opacity-50"></div>
-                
-                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+
+                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
                     {/* Left Column: Call to Action */}
                     <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-left">
                         <motion.div
@@ -66,7 +64,7 @@ export default function HomePage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <span className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold border border-glass-border bg-glass-bg/60 text-secondary backdrop-blur-sm shadow-sm">
+                            <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold border border-glass-border bg-glass-bg/60 text-secondary backdrop-blur-md shadow-sm">
                                 <Flame className="w-3.5 h-3.5 mr-1.5 animate-pulse text-amber-500" />
                                 Instant Booking & Verified Venues
                             </span>
@@ -77,7 +75,7 @@ export default function HomePage() {
                                 initial={{ opacity: 0, y: 15 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.1 }}
-                                className="text-4xl sm:text-6xl font-black tracking-tight leading-none text-foreground"
+                                className="text-4xl sm:text-6xl font-black tracking-tight leading-[1.05] text-foreground"
                             >
                                 Book Premium Sports <br />
                                 <span className="accent-gradient-text">Facilities & Turfs</span>
@@ -86,12 +84,32 @@ export default function HomePage() {
                             <motion.p
                                 initial={{ opacity: 0, y: 15 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
+                                transition={{ duration: 0.5, delay: 0.18 }}
                                 className="max-w-xl text-muted text-sm sm:text-base leading-relaxed"
                             >
                                 Discover, review, and book top football turfs, cricket boxes, swimming pools, and indoor courts near you. Hassle-free booking, instantly.
                             </motion.p>
                         </div>
+
+                        {/* Active Players Social Proof Badge */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.24 }}
+                            className="flex items-center gap-3"
+                        >
+                            <div className="flex -space-x-2.5">
+                                <img className="w-7 h-7 rounded-full border border-card-border object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&q=80" alt="Player 1" />
+                                <img className="w-7 h-7 rounded-full border border-card-border object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Player 2" />
+                                <img className="w-7 h-7 rounded-full border border-card-border object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Player 3" />
+                                <div className="w-7 h-7 rounded-full border border-card-border bg-primary text-background text-[10px] font-black flex items-center justify-center shadow-md">
+                                    +5k
+                                </div>
+                            </div>
+                            <span className="text-xs font-semibold text-muted">
+                                Join over <strong className="text-foreground font-bold">5,000+ athletes</strong> booking this week!
+                            </span>
+                        </motion.div>
 
                         <motion.div
                             initial={{ opacity: 0, y: 15 }}
@@ -101,14 +119,14 @@ export default function HomePage() {
                         >
                             <Link
                                 href="/facilities"
-                                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-primary text-background font-bold text-sm hover:opacity-90 active:scale-98 transition-all shadow-md justify-center"
+                                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-primary text-background font-bold text-sm hover:opacity-90 active:scale-98 hover:-translate-y-0.5 hover:shadow-primary/15 duration-300 transition-all shadow-md justify-center"
                             >
                                 <span>Explore Venues</span>
                                 <ArrowRight className="w-4 h-4" />
                             </Link>
                             <Link
                                 href="/register"
-                                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl border border-card-border bg-card/65 text-foreground font-bold text-sm hover:bg-glass-border/45 active:scale-98 transition-all justify-center"
+                                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl border border-card-border bg-card/65 text-foreground font-bold text-sm hover:bg-glass-border/45 hover:-translate-y-0.5 active:scale-98 duration-300 transition-all justify-center"
                             >
                                 <span>Create Account</span>
                             </Link>
@@ -119,117 +137,146 @@ export default function HomePage() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4, duration: 0.6 }}
-                            className="pt-6 border-t border-card-border/50 flex flex-wrap gap-x-6 gap-y-3.5 text-xs text-muted"
+                            className="pt-6 border-t border-card-border/50 flex flex-wrap gap-3 text-xs text-muted"
                         >
-                            <div className="flex items-center gap-2">
-                                <Zap className="w-4.5 h-4.5 text-secondary" />
-                                <span>Instant Reservation</span>
+                            <div className="flex items-center gap-2 bg-glass-bg/40 border border-glass-border/60 py-1.5 px-3 rounded-full backdrop-blur-sm">
+                                <Zap className="w-3.5 h-3.5 text-secondary animate-pulse" />
+                                <span className="font-semibold text-foreground/85">Instant Reservation</span>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Shield className="w-4.5 h-4.5 text-emerald-500" />
-                                <span>Secure Payments</span>
+                            <div className="flex items-center gap-2 bg-glass-bg/40 border border-glass-border/60 py-1.5 px-3 rounded-full backdrop-blur-sm">
+                                <Shield className="w-3.5 h-3.5 text-emerald-500" />
+                                <span className="font-semibold text-foreground/85">Secure Payments</span>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Trophy className="w-4.5 h-4.5 text-amber-500" />
-                                <span>Premium Quality Turfs</span>
+                            <div className="flex items-center gap-2 bg-glass-bg/40 border border-glass-border/60 py-1.5 px-3 rounded-full backdrop-blur-sm">
+                                <Trophy className="w-3.5 h-3.5 text-amber-500" />
+                                <span className="font-semibold text-foreground/85">Verified Arenas</span>
                             </div>
                         </motion.div>
                     </div>
 
-                    {/* Right Column: Premium Interactive Widget */}
-                    <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end">
+                    {/* Right Column: Unique 3D Perspective Sports Collage Showcase */}
+                    <div className="lg:col-span-5 w-full flex justify-center lg:justify-end">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="w-full max-w-[380px] glass border border-glass-border rounded-2xl shadow-xl overflow-hidden relative z-10 animate-float"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            className="relative w-full max-w-[440px] aspect-[4/5] flex items-center justify-center p-4"
                         >
-                            {/* Card Header Image */}
-                            <div className="relative h-44 overflow-hidden bg-muted">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&auto=format&fit=crop&q=60" 
-                                    alt="Stadium Turf" 
-                                    className="w-full h-full object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                <span className="absolute top-3 left-3 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold tracking-wider bg-secondary text-white uppercase shadow-sm">
-                                    Football
-                                </span>
-                                <span className="absolute bottom-3 left-3 text-white font-bold text-lg leading-tight">
-                                    Dhanmondi Club Turf
-                                </span>
-                            </div>
+                            {/* Ambient background glows */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary/15 rounded-full blur-[80px] -z-10 animate-pulse" style={{ animationDuration: '6s' }}></div>
+                            <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-secondary/10 rounded-full blur-[60px] -z-10"></div>
 
-                            {/* Widget Interactive Body */}
-                            <div className="p-5 space-y-4 text-left">
-                                <div className="flex items-center justify-between text-xs">
-                                    <div className="flex items-center text-muted">
-                                        <MapPin className="w-3.5 h-3.5 mr-1 text-secondary" />
-                                        <span>Satmasjid Rd, Dhaka</span>
-                                    </div>
-                                    <div className="flex items-center text-amber-500 font-semibold">
-                                        <span>★ 4.9</span>
-                                        <span className="text-muted ml-0.5 font-normal">(124)</span>
-                                    </div>
-                                </div>
+                            {/* Outer Perspective Wrapper */}
+                            <div className="relative w-full h-full flex items-center justify-center">
 
-                                <div className="border-t border-glass-border pt-3.5 space-y-2">
-                                    <label className="block text-[10px] font-bold text-muted uppercase tracking-wider">
-                                        Select Time Slot
-                                    </label>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        <button 
-                                            type="button"
-                                            onClick={() => setSelectedSlot(0)}
-                                            className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all border text-center cursor-pointer ${
-                                                selectedSlot === 0 
-                                                    ? 'bg-secondary border-secondary text-white shadow-sm' 
-                                                    : 'border-card-border bg-card/40 text-foreground hover:bg-glass-border/30'
-                                            }`}
-                                        >
-                                            04:00 PM - 06:00 PM
-                                        </button>
-                                        <button 
-                                            type="button"
-                                            onClick={() => setSelectedSlot(1)}
-                                            className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all border text-center cursor-pointer ${
-                                                selectedSlot === 1 
-                                                    ? 'bg-secondary border-secondary text-white shadow-sm' 
-                                                    : 'border-card-border bg-card/40 text-foreground hover:bg-glass-border/30'
-                                            }`}
-                                        >
-                                            06:00 PM - 08:00 PM
-                                        </button>
+                                {/* COLLAGE CARD 1: Underlay card (Indoor Court / Badminton) */}
+                                <motion.div
+                                    initial={{ opacity: 0, x: -40, rotate: -8 }}
+                                    animate={{ opacity: 0.85, x: -30, rotate: -12 }}
+                                    whileHover={{ scale: 1.05, rotate: -6, zIndex: 30 }}
+                                    transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                                    className="absolute left-4 top-12 w-[180px] sm:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden border border-glass-border/40 shadow-lg -rotate-12 cursor-pointer z-10"
+                                >
+                                    <div className="absolute inset-0 bg-black/30 hover:bg-black/10 transition-all z-10"></div>
+                                    <img
+                                        src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=400&q=80"
+                                        alt="Badminton Court"
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute bottom-3 left-3 z-20 text-white">
+                                        <p className="text-[9px] uppercase font-bold tracking-wider text-slate-300">Indoor Arena</p>
+                                        <h4 className="text-xs font-black">Elite Badminton</h4>
                                     </div>
-                                </div>
+                                </motion.div>
 
-                                <div className="border-t border-glass-border pt-3.5 flex items-center justify-between">
-                                    <div>
-                                        <span className="block text-[10px] font-bold text-muted uppercase tracking-wider">
-                                            Est. Total Price
+                                {/* COLLAGE CARD 2: Main Featured Turf Card (3D Tilt effect) */}
+                                <motion.div
+                                    whileHover={{
+                                        scale: 1.03,
+                                        rotateY: -5,
+                                        rotateX: 5,
+                                        boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.3)"
+                                    }}
+                                    transition={{ type: "spring", stiffness: 120, damping: 14 }}
+                                    className="relative w-[240px] sm:w-[280px] aspect-[3/4] rounded-3xl overflow-hidden border border-glass-border shadow-2xl z-20 cursor-pointer bg-card/45 backdrop-blur-md"
+                                    style={{ perspective: 1000 }}
+                                >
+                                    {/* Glass border lighting glow overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-secondary/5 via-transparent to-white/10 pointer-events-none z-20"></div>
+
+                                    <div className="relative w-full h-full overflow-hidden">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1540747737956-37872404a87a?w=600&auto=format&fit=crop&q=80"
+                                            alt="Premium Football Turf"
+                                            className="w-full h-full object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10"></div>
+
+                                        {/* Premium Live Label */}
+                                        <span className="absolute top-4 left-4 z-20 bg-secondary px-2.5 py-1 rounded-md text-[9px] font-black uppercase tracking-wider text-white shadow-md flex items-center gap-1">
+                                            <span className="w-1.5 h-1.5 bg-white rounded-full animate-ping"></span>
+                                            Prime turf
                                         </span>
-                                        <span className="text-lg font-black text-foreground">
-                                            ৳ {selectedSlot === 0 ? '2,400' : '2,800'}
-                                        </span>
+
+                                        {/* Card content text */}
+                                        <div className="absolute bottom-5 left-5 right-5 z-20 text-white">
+                                            <div className="flex items-center gap-1 text-amber-400 mb-1">
+                                                {[1, 2, 3, 4, 5].map((s) => (
+                                                    <svg key={s} className="w-3 h-3 fill-current" viewBox="0 0 20 20">
+                                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                ))}
+                                                <span className="text-[10px] text-slate-300 font-bold ml-1">5.0 (200+)</span>
+                                            </div>
+                                            <h3 className="text-base font-extrabold tracking-tight">Dhanmondi Club Turf</h3>
+                                            <p className="text-[11px] text-slate-300 mt-0.5">Dhaka, Bangladesh</p>
+                                        </div>
                                     </div>
-                                    <button
-                                        type="button"
-                                        onClick={handleMockBook}
-                                        disabled={mockBooked}
-                                        className={`px-4 py-2.5 rounded-lg text-xs font-bold transition-all shadow-sm cursor-pointer ${
-                                            mockBooked 
-                                                ? 'bg-emerald-500 text-white cursor-default' 
-                                                : 'bg-primary text-background hover:opacity-90 active:scale-95'
-                                        }`}
-                                    >
-                                        {mockBooked ? 'Booked Successfully!' : 'Instant Book'}
-                                    </button>
-                                </div>
+                                </motion.div>
+
+                                {/* COLLAGE CARD 3: Overlapping visual badge card (Football close-up) */}
+                                <motion.div
+                                    initial={{ opacity: 0, x: 40, rotate: 6 }}
+                                    animate={{ opacity: 0.9, x: 30, rotate: 8 }}
+                                    whileHover={{ scale: 1.05, rotate: 4, zIndex: 30 }}
+                                    transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                                    className="absolute right-2 bottom-8 w-[140px] sm:w-[170px] aspect-[4/3] rounded-2xl overflow-hidden border border-glass-border/40 shadow-lg rotate-8 cursor-pointer z-20"
+                                >
+                                    <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors z-10"></div>
+                                    <img
+                                        src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&q=80"
+                                        alt="Football Action"
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute top-3 right-3 z-20 bg-emerald-500 text-white font-extrabold text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded">
+                                        Active
+                                    </div>
+                                </motion.div>
+
+                                {/* FLOATING ELEMENT: Glassmorphic interactive stat badge */}
+                                <motion.div
+                                    animate={{ y: [0, -6, 0] }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                    className="absolute top-6 right-6 z-30 glass px-3.5 py-2 rounded-2xl flex items-center gap-2 border border-glass-border shadow-lg"
+                                >
+                                    <span className="flex h-2 w-2 relative">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                    </span>
+                                    <span className="text-[10px] font-bold text-foreground">50+ Open Arenas</span>
+                                </motion.div>
+
+                                {/* FLOATING ELEMENT 2: Live feedback prompt card */}
+                                <motion.div
+                                    animate={{ y: [0, 6, 0] }}
+                                    transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                                    className="absolute bottom-6 left-6 z-30 bg-primary/95 text-background px-3.5 py-2.5 rounded-2xl flex items-center gap-2 shadow-xl border border-glass-border/10"
+                                >
+                                    <Trophy className="w-3.5 h-3.5 text-amber-400" />
+                                    <span className="text-[10px] font-extrabold tracking-tight">Verified & Secure</span>
+                                </motion.div>
                             </div>
                         </motion.div>
-                        
-                        {/* Decorative background shadow rings */}
-                        <div className="absolute -inset-2 rounded-3xl border border-glass-border/50 scale-102 pointer-events-none z-0"></div>
                     </div>
                 </div>
             </section>
@@ -301,7 +348,7 @@ export default function HomePage() {
                                                 <span className="truncate">{facility.location}</span>
                                             </div>
                                         </div>
-                                        
+
                                         <p className="text-xs text-muted line-clamp-2 flex-grow">
                                             {facility.description}
                                         </p>
