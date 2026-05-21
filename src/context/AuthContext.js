@@ -5,10 +5,34 @@ import toast from 'react-hot-toast';
 
 import { API_URL } from '@/config';
 
+// Simple Fetch Interceptor: Automatically attach the JWT token to requests going to our API
+if (typeof window !== 'undefined') {
+    const originalFetch = window.fetch;
+    window.fetch = async function (url, options = {}) {
+        const token = localStorage.getItem('sportnest_token');
+        const urlStr = typeof url === 'string' ? url : (url && url.url) || '';
+        
+        if (token && urlStr.includes(API_URL)) {
+            options.headers = {
+                ...options.headers,
+                'Authorization': `Bearer ${token}`
+            };
+        }
+        return originalFetch(url, options);
+    };
+}
+
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+    // Instantly restore user session from localStorage on reload to prevent flickering or redirects
+    const [user, setUser] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const savedUser = localStorage.getItem('sportnest_user');
+            return savedUser ? JSON.parse(savedUser) : null;
+        }
+        return null;
+    });
     const [loading, setLoading] = useState(true);
 
     const checkUser = async () => {
@@ -24,12 +48,15 @@ export function AuthProvider({ children }) {
             if (res.ok) {
                 const data = await res.json();
                 setUser(data.user);
+                localStorage.setItem('sportnest_user', JSON.stringify(data.user));
             } else {
                 setUser(null);
+                localStorage.removeItem('sportnest_user');
+                localStorage.removeItem('sportnest_token');
             }
         } catch (error) {
             console.error('Failed to fetch user:', error);
-            setUser(null);
+            // Don't clear user session on temporary connection/cold start errors to keep reload working
         } finally {
             setLoading(false);
         }
@@ -54,6 +81,10 @@ export function AuthProvider({ children }) {
 
             if (res.ok) {
                 setUser(data.user);
+                localStorage.setItem('sportnest_user', JSON.stringify(data.user));
+                if (data.token) {
+                    localStorage.setItem('sportnest_token', data.token);
+                }
                 toast.success('Login successful!');
                 return { success: true };
             } else {
@@ -82,6 +113,10 @@ export function AuthProvider({ children }) {
 
             if (res.ok) {
                 setUser(data.user);
+                localStorage.setItem('sportnest_user', JSON.stringify(data.user));
+                if (data.token) {
+                    localStorage.setItem('sportnest_token', data.token);
+                }
                 toast.success('Login successful with Google!');
                 return { success: true };
             } else {
@@ -134,6 +169,8 @@ export function AuthProvider({ children }) {
 
             if (res.ok) {
                 setUser(null);
+                localStorage.removeItem('sportnest_user');
+                localStorage.removeItem('sportnest_token');
                 toast.success('Logged out successfully!');
                 return { success: true };
             }
