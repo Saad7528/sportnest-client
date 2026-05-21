@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
+                credentials: 'include', // Important to send cookies
             });
 
             if (res.ok) {
@@ -62,6 +62,34 @@ export function AuthProvider({ children }) {
             }
         } catch (error) {
             console.error('Login error:', error);
+            toast.error('Server connection error!');
+            return { success: false, message: 'Server connection error' };
+        }
+    };
+
+    const loginWithGoogle = async (accessToken) => {
+        try {
+            const res = await fetch(`${API_URL}/auth/google`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ access_token: accessToken }),
+                credentials: 'include',
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                setUser(data.user);
+                toast.success('Login successful with Google!');
+                return { success: true };
+            } else {
+                toast.error(data.message || 'Google Login failed!');
+                return { success: false, message: data.message };
+            }
+        } catch (error) {
+            console.error('Google Login error:', error);
             toast.error('Server connection error!');
             return { success: false, message: 'Server connection error' };
         }
@@ -117,7 +145,7 @@ export function AuthProvider({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, register, logout, checkUser }}>
+        <AuthContext.Provider value={{ user, loading, login, loginWithGoogle, register, logout, checkUser }}>
             {children}
         </AuthContext.Provider>
     );

@@ -20,8 +20,8 @@ export default function Footer() {
                     <div className="space-y-3">
                         <h3 className="text-xs font-bold tracking-wider uppercase text-foreground">Contact Us</h3>
                         <ul className="space-y-2 text-xs text-muted">
-                            <li>Email: contact@sportnest.com</li>
-                            <li>Phone: +880 1700000000</li>
+                            <li>Email: Saad0174742@gmail.com</li>
+                            <li>Phone: +880 1851192657</li>
                             <li>Address: Dhaka, Bangladesh</li>
                         </ul>
                     </div>

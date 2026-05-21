@@ -7,9 +7,10 @@ import Link from 'next/link';
 import { Mail, Lock, LogIn, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { API_URL } from '@/config';
+import { useGoogleLogin } from '@react-oauth/google';
 
 export default function LoginPage() {
-    const { user, login } = useAuth();
+    const { user, login, loginWithGoogle } = useAuth();
     const router = useRouter();
     const searchParams = useSearchParams();
     const [email, setEmail] = useState('');
@@ -37,36 +38,20 @@ export default function LoginPage() {
         }
     };
 
-    const handleGoogleLogin = () => {
-        setLoading(true);
-        setTimeout(async () => {
-            // Mock login as Google User
-            const result = await login('googleuser@gmail.com', 'GoogleUser123');
+    const handleGoogleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            setLoading(true);
+            const result = await loginWithGoogle(tokenResponse.access_token);
             setLoading(false);
             if (result.success) {
                 router.push(redirectPath);
-            } else {
-                // If the user doesn't exist, register them first, then login
-                const regResult = await fetch(`${API_URL}/register`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: 'Google User',
-                        email: 'googleuser@gmail.com',
-                        photoUrl: 'https://i.ibb.co.com/5R38XF0/user-placeholder.png',
-                        password: 'GoogleUser123'
-                    })
-                });
-                
-                if (regResult.ok || regResult.status === 400) { // status 400 means already exists
-                    const logResult = await login('googleuser@gmail.com', 'GoogleUser123');
-                    if (logResult.success) {
-                        router.push(redirectPath);
-                    }
-                }
             }
-        }, 1000);
-    };
+        },
+        onError: (error) => {
+            console.error('Google Sign-In failed:', error);
+            setLoading(false);
+        }
+    });
 
     return (
         <div className="flex-grow flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 bg-background relative grid-pattern">
