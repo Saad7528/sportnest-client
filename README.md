@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏟️ SportNest
 
-## Getting Started
+A premium, next-generation sports venue booking and management platform designed to connect sports enthusiasts with premium venue owners. SportNest makes listing, editing, exploring, and booking sports facilities (football turfs, cricket grounds, badminton courts, etc.) beautiful, smooth, and effortless.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Live URL
+Experience the live application here: **[https://sportnest-client-one.vercel.app/](https://sportnest-client-one.vercel.app/)**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🎯 Purpose
+The main purpose of **SportNest** is to eliminate the friction in finding and renting sports venues. It offers a dual-experience panel:
+- **For Players**: Easily browse available local venues, filter by sport categories, view open slots, and instantly secure bookings.
+- **For Venue Owners**: Seamlessly list new facilities with real-time interactive previews and efficiently manage existing venues using an advanced, high-performance table dashboard.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+- **📺 Premium Visual Aesthetics**: Built with high-end glassmorphism, harmonious HSL color palettes, modern typography (Outfit/Inter), and smooth micro-animations.
+- **⚡ Interactive Add Facility Wizard**: A two-column interface featuring:
+  - Visual drag-and-drop image upload zone.
+  - Live Preview Card that updates instantly as you type.
+  - Tactile available time slot badge selection.
+- **📊 Advanced Management Panel**: A professional, responsive glassmorphic table layout replacing standard card lists:
+  - Clear columns for Venue Details, Location, Capacity, and Hourly Rates.
+  - Inline responsive Edit and Delete action controls.
+- **🔧 Premium Edit Modal**: In-place edit popup complete with image URL adjustments and a real-time image preview container.
+- **🔐 Google OAuth Integration**: Secure single sign-on with automatic persistent session recovery on browser refresh.
+- **🌓 Responsive Theme Toggle**: Seamless transition between sleek dark mode and polished light mode layouts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 NPM Packages Used
 
-## Deploy on Vercel
+### Core Stack
+- **`next`** (`v16.2.6`) - Modern React framework supporting SSR and App Router conventions.
+- **`react`** & **`react-dom`** (`v19.2.4`) - High-performance UI rendering core.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Authentication & State
+- **`@react-oauth/google`** (`v0.13.5`) - Seamless integration for Google Sign-In and profile retrieval.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Aesthetics & Polish
+- **`framer-motion`** (`v12.40.0`) - Powering fluid layouts, modal animations, and dynamic transitions.
+- **`tailwindcss`** & **`@tailwindcss/postcss`** (`v4.0.0`) - Utility-first styling framework driving the premium theme.
+- **`lucide-react`** (`v1.16.0`) - Premium icon pack integrated across forms, tables, and buttons.
+- **`next-themes`** (`v0.4.6`) - Driving dark/light theme switching with zero layout shift.
+- **`react-hot-toast`** (`v2.6.0`) - Interactive, elegant non-blocking system notification alerts.
+
+---
+
+## 🛠️ Getting Started
+
+To run the client project locally:
+
+1. **Clone the repository** and navigate to the project directory:
+   ```bash
+   cd sportnest-client
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
