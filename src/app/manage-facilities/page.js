@@ -248,7 +248,24 @@ export default function ManageFacilitiesPage() {
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        Actions Placeholder
+                                        <div className="flex items-center justify-end space-x-2.5">
+                                            <button
+                                                onClick={() => openEditModal(facility)}
+                                                className="p-2 px-3 rounded-xl border border-glass-border hover:bg-primary/10 hover:text-primary hover:border-primary/30 text-muted transition-all duration-200 flex items-center cursor-pointer"
+                                                title="Edit Facility"
+                                            >
+                                                <Edit className="w-4 h-4" />
+                                                <span className="hidden sm:inline ml-1.5 text-xs font-bold">Edit</span>
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(facility._id)}
+                                                className="p-2 px-3 rounded-xl border border-red-500/10 hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30 text-red-400 transition-all duration-200 flex items-center cursor-pointer"
+                                                title="Delete Facility"
+                                            >
+                                                <Trash2 className="w-4 h-4" />
+                                                <span className="hidden sm:inline ml-1.5 text-xs font-bold">Delete</span>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
