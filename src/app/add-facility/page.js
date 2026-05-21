@@ -143,202 +143,294 @@ export default function AddFacilityPage() {
     if (!user) return null;
 
     return (
-        <div className="flex-grow max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 w-full space-y-8">
+        <div className="flex-grow max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 w-full space-y-8">
             <div className="space-y-2">
-                <h1 className="text-3xl font-extrabold tracking-tight text-foreground">Add New Facility</h1>
+                <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+                    Add New <span className="accent-gradient-text">Facility</span>
+                </h1>
                 <p className="text-muted text-sm sm:text-base">Provide details of your venue to list it for booking.</p>
             </div>
 
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="glass border border-glass-border p-8 rounded-2xl shadow-lg"
-            >
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Name */}
-                        <div className="space-y-1">
-                            <label className="text-sm font-medium text-muted flex items-center">
-                                <PlusCircle className="w-4 h-4 mr-1.5 text-primary" />
-                                Facility Name
-                            </label>
-                            <input
-                                type="text"
-                                required
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="e.g. Premium Football Turf Dhanmondi"
-                                className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                            />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Form Column */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="lg:col-span-7 glass border border-glass-border p-6 sm:p-8 rounded-2xl shadow-lg"
+                >
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Name */}
+                            <div className="space-y-1">
+                                <label className="text-sm font-medium text-muted flex items-center">
+                                    <PlusCircle className="w-4 h-4 mr-1.5 text-primary" />
+                                    Facility Name
+                                </label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder="e.g. Premium Football Turf Dhanmondi"
+                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
+                                />
+                            </div>
+
+                            {/* Type */}
+                            <div className="space-y-1">
+                                <label className="text-sm font-medium text-muted flex items-center">
+                                    <Clock className="w-4 h-4 mr-1.5 text-primary" />
+                                    Sport Type
+                                </label>
+                                <select
+                                    value={type}
+                                    onChange={(e) => setType(e.target.value)}
+                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
+                                >
+                                    {SPORT_TYPES.map((t) => (
+                                        <option key={t} value={t}>
+                                            {t}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            {/* Location */}
+                            <div className="space-y-1">
+                                <label className="text-sm font-medium text-muted flex items-center">
+                                    <MapPin className="w-4 h-4 mr-1.5 text-primary" />
+                                    Venue Location (Address)
+                                </label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={location}
+                                    onChange={(e) => setLocation(e.target.value)}
+                                    placeholder="e.g. Dhanmondi 15, Dhaka"
+                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
+                                />
+                            </div>
+
+                            {/* Capacity */}
+                            <div className="space-y-1">
+                                <label className="text-sm font-medium text-muted flex items-center">
+                                    <Users className="w-4 h-4 mr-1.5 text-primary" />
+                                    Capacity (Persons)
+                                </label>
+                                <input
+                                    type="number"
+                                    required
+                                    min="1"
+                                    value={capacity}
+                                    onChange={(e) => setCapacity(e.target.value)}
+                                    placeholder="e.g. 14"
+                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
+                                />
+                            </div>
+
+                            {/* Price per hour */}
+                            <div className="space-y-1">
+                                <label className="text-sm font-medium text-muted flex items-center">
+                                    <DollarSign className="w-4 h-4 mr-1.5 text-primary" />
+                                    Price Per Hour (৳)
+                                </label>
+                                <input
+                                    type="number"
+                                    required
+                                    min="100"
+                                    value={pricePerHour}
+                                    onChange={(e) => setPricePerHour(e.target.value)}
+                                    placeholder="e.g. 1200"
+                                    className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
+                                />
+                            </div>
+
+                            {/* Image Upload */}
+                            <div className="space-y-1">
+                                <label className="text-sm font-medium text-muted flex items-center">
+                                    <ImageIcon className="w-4 h-4 mr-1.5 text-primary" />
+                                    Upload Image (ImgBB)
+                                </label>
+                                <div className="flex space-x-2">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        className="block w-full text-xs text-muted file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                                    />
+                                    {uploadingImage && (
+                                        <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin self-center"></div>
+                                    )}
+                                </div>
+                            </div>
                         </div>
 
-                        {/* Type */}
+                        {/* Manual Image URL if upload fails */}
                         <div className="space-y-1">
+                            <label className="text-xs font-semibold text-muted block">Image URL (Direct link if you do not upload)</label>
+                            <input
+                                type="url"
+                                value={imageUrl}
+                                onChange={(e) => setImageUrl(e.target.value)}
+                                placeholder="https://example.com/photo.jpg"
+                                className="block w-full px-3 py-2 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
+                            />
+                            {imageUrl && (
+                                <div className="mt-2 relative w-32 h-20 rounded-lg overflow-hidden border border-glass-border">
+                                    <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Available Time Slots */}
+                        <div className="space-y-2">
                             <label className="text-sm font-medium text-muted flex items-center">
                                 <Clock className="w-4 h-4 mr-1.5 text-primary" />
-                                Sport Type
+                                Available Slots (Select at least one)
                             </label>
-                            <select
-                                value={type}
-                                onChange={(e) => setType(e.target.value)}
-                                className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                            >
-                                {SPORT_TYPES.map((t) => (
-                                    <option key={t} value={t}>
-                                        {t}
-                                    </option>
-                                ))}
-                            </select>
+                            <div className="flex flex-wrap gap-2">
+                                {TIME_SLOTS.map((slot) => {
+                                    const selected = selectedSlots.includes(slot);
+                                    return (
+                                        <button
+                                            type="button"
+                                            key={slot}
+                                            onClick={() => handleSlotToggle(slot)}
+                                            className={`px-4 py-2 rounded-xl text-xs font-medium border transition-all ${
+                                                selected
+                                                    ? 'bg-primary text-background border-transparent'
+                                                    : 'glass border-glass-border hover:bg-glass-border/30 text-muted'
+                                            }`}
+                                        >
+                                            {slot}
+                                        </button>
+                                    );
+                                })}
+                            </div>
                         </div>
 
-                        {/* Location */}
+                        {/* Description */}
                         <div className="space-y-1">
                             <label className="text-sm font-medium text-muted flex items-center">
-                                <MapPin className="w-4 h-4 mr-1.5 text-primary" />
-                                Venue Location (Address)
+                                <FileText className="w-4 h-4 mr-1.5 text-primary" />
+                                Facility Description
                             </label>
-                            <input
-                                type="text"
-                                required
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
-                                placeholder="e.g. Dhanmondi 15, Dhaka"
-                                className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                            />
-                        </div>
-
-                        {/* Capacity */}
-                        <div className="space-y-1">
-                            <label className="text-sm font-medium text-muted flex items-center">
-                                <Users className="w-4 h-4 mr-1.5 text-primary" />
-                                Capacity (Persons)
-                            </label>
-                            <input
-                                type="number"
-                                required
-                                min="1"
-                                value={capacity}
-                                onChange={(e) => setCapacity(e.target.value)}
-                                placeholder="e.g. 14"
+                            <textarea
+                                rows="4"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                placeholder="Describe facility amenities, rules, and details..."
                                 className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
                             />
                         </div>
 
-                        {/* Price per hour */}
-                        <div className="space-y-1">
-                            <label className="text-sm font-medium text-muted flex items-center">
-                                <DollarSign className="w-4 h-4 mr-1.5 text-primary" />
-                                Price Per Hour (৳)
-                            </label>
-                            <input
-                                type="number"
-                                required
-                                min="100"
-                                value={pricePerHour}
-                                onChange={(e) => setPricePerHour(e.target.value)}
-                                placeholder="e.g. 1200"
-                                className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                            />
+                        {/* Auto-filled owner info */}
+                        <div className="p-4 rounded-xl bg-glass-border/10 border border-glass-border text-xs text-muted">
+                            Owner Email: <strong className="text-foreground">{user.email}</strong> (Auto-filled)
                         </div>
 
-                        {/* Image Upload */}
-                        <div className="space-y-1">
-                            <label className="text-sm font-medium text-muted flex items-center">
-                                <ImageIcon className="w-4 h-4 mr-1.5 text-primary" />
-                                Upload Image (ImgBB)
-                            </label>
-                            <div className="flex space-x-2">
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleImageUpload}
-                                    className="block w-full text-xs text-muted file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
-                                />
-                                {uploadingImage && (
-                                    <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin self-center"></div>
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            disabled={submitting}
+                            className="w-full py-3.5 rounded-xl bg-primary text-background hover:bg-primary-hover font-bold text-sm shadow-md transition-all duration-200 flex justify-center items-center cursor-pointer"
+                        >
+                            {submitting ? (
+                                <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
+                            ) : (
+                                'Add Facility'
+                            )}
+                        </button>
+                    </form>
+                </motion.div>
+
+                {/* Preview Column */}
+                <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.15 }}
+                    className="lg:col-span-5 lg:sticky lg:top-24 space-y-4"
+                >
+                    <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-muted tracking-widest uppercase">Live Preview</span>
+                        <div className="flex items-center space-x-1.5">
+                            <span className="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                            <span className="text-2xs font-semibold text-success uppercase">Auto Syncing</span>
+                        </div>
+                    </div>
+
+                    <div className="glass border border-glass-border rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:border-primary/20 group">
+                        {/* Image Preview Container */}
+                        <div className="relative h-56 w-full overflow-hidden bg-muted/10">
+                            <img
+                                src={imageUrl || 'https://images.unsplash.com/photo-1540747737956-37872404a87a?w=800&q=80'}
+                                alt="Facility Preview"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                            
+                            {/* Sport Type Badge */}
+                            <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-background/80 backdrop-blur-md border border-glass-border text-foreground shadow-sm">
+                                {type}
+                            </span>
+                        </div>
+
+                        {/* Details */}
+                        <div className="p-6 space-y-4">
+                            <div className="space-y-1">
+                                <h3 className="text-xl font-bold text-foreground line-clamp-1 group-hover:accent-gradient-text transition-colors">
+                                    {name || 'Your Premium Venue Name'}
+                                </h3>
+                                <p className="text-sm text-muted flex items-center">
+                                    <MapPin className="w-3.5 h-3.5 mr-1 text-primary/75" />
+                                    {location || 'Dhanmondi, Dhaka'}
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4 py-3 border-y border-glass-border/50 text-xs">
+                                <div className="space-y-0.5">
+                                    <span className="text-muted block font-medium">Capacity</span>
+                                    <span className="font-semibold text-foreground flex items-center">
+                                        <Users className="w-3.5 h-3.5 mr-1 text-primary/75" />
+                                        {capacity ? `${capacity} Persons` : '--'}
+                                    </span>
+                                </div>
+                                <div className="space-y-0.5">
+                                    <span className="text-muted block font-medium">Price / Hour</span>
+                                    <span className="font-semibold text-foreground flex items-center text-sm">
+                                        <DollarSign className="w-3.5 h-3.5 mr-0.5 text-primary/75" />
+                                        <span className="text-base font-bold text-foreground">{pricePerHour || '0'}</span>
+                                        <span className="text-2xs text-muted font-normal ml-0.5">৳</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Description preview */}
+                            {description && (
+                                <p className="text-xs text-muted line-clamp-2 leading-relaxed">
+                                    {description}
+                                </p>
+                            )}
+
+                            {/* Selected Slots preview */}
+                            <div className="space-y-1.5">
+                                <span className="text-2xs font-bold text-muted uppercase tracking-wider block">Available Slots ({selectedSlots.length})</span>
+                                {selectedSlots.length > 0 ? (
+                                    <div className="flex flex-wrap gap-1">
+                                        {selectedSlots.map((slot) => (
+                                            <span key={slot} className="px-2 py-0.5 rounded-lg text-3xs font-medium bg-primary/10 text-primary border border-primary/20">
+                                                {slot.split(' - ')[0]}
+                                            </span>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <span className="text-3xs text-muted italic">No slots selected yet</span>
                                 )}
                             </div>
                         </div>
                     </div>
-
-                    {/* Manual Image URL if upload fails */}
-                    <div className="space-y-1">
-                        <label className="text-xs font-semibold text-muted block">Image URL (Direct link if you do not upload)</label>
-                        <input
-                            type="url"
-                            value={imageUrl}
-                            onChange={(e) => setImageUrl(e.target.value)}
-                            placeholder="https://example.com/photo.jpg"
-                            className="block w-full px-3 py-2 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                        />
-                        {imageUrl && (
-                            <div className="mt-2 relative w-32 h-20 rounded-lg overflow-hidden border border-glass-border">
-                                <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Available Time Slots */}
-                    <div className="space-y-2">
-                        <label className="text-sm font-medium text-muted flex items-center">
-                            <Clock className="w-4 h-4 mr-1.5 text-primary" />
-                            Available Slots (Select at least one)
-                        </label>
-                        <div className="flex flex-wrap gap-2">
-                            {TIME_SLOTS.map((slot) => {
-                                const selected = selectedSlots.includes(slot);
-                                return (
-                                    <button
-                                        type="button"
-                                        key={slot}
-                                        onClick={() => handleSlotToggle(slot)}
-                                        className={`px-4 py-2 rounded-xl text-xs font-medium border transition-all ${
-                                            selected
-                                                ? 'bg-primary text-background border-transparent'
-                                                : 'glass border-glass-border hover:bg-glass-border/30 text-muted'
-                                        }`}
-                                    >
-                                        {slot}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
-
-                    {/* Description */}
-                    <div className="space-y-1">
-                        <label className="text-sm font-medium text-muted flex items-center">
-                            <FileText className="w-4 h-4 mr-1.5 text-primary" />
-                            Facility Description
-                        </label>
-                        <textarea
-                            rows="4"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Describe facility amenities, rules, and details..."
-                            className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                        />
-                    </div>
-
-                    {/* Auto-filled owner info */}
-                    <div className="p-4 rounded-xl bg-glass-border/10 border border-glass-border text-xs text-muted">
-                        Owner Email: <strong className="text-foreground">{user.email}</strong> (Auto-filled)
-                    </div>
-
-                    {/* Submit Button */}
-                    <button
-                        type="submit"
-                        disabled={submitting}
-                        className="w-full py-3.5 rounded-xl bg-primary text-background hover:bg-primary-hover font-bold text-sm shadow-md transition-all duration-200 flex justify-center items-center cursor-pointer"
-                    >
-                        {submitting ? (
-                            <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
-                        ) : (
-                            'Add Facility'
-                        )}
-                    </button>
-                </form>
-            </motion.div>
+                </motion.div>
+            </div>
         </div>
     );
 }
