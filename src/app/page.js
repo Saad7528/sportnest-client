@@ -107,7 +107,7 @@ export default function HomePage() {
                                 {!failedImages['player1'] ? (
                                     <img 
                                         className="w-7 h-7 rounded-full border border-card-border object-cover" 
-                                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&q=80" 
+                                        src="/images/avatar1.png" 
                                         alt="Player 1" 
                                         onError={() => handleImageError('player1')}
                                     />
@@ -117,7 +117,7 @@ export default function HomePage() {
                                 {!failedImages['player2'] ? (
                                     <img 
                                         className="w-7 h-7 rounded-full border border-card-border object-cover" 
-                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" 
+                                        src="/images/avatar2.png" 
                                         alt="Player 2" 
                                         onError={() => handleImageError('player2')}
                                     />
@@ -127,7 +127,7 @@ export default function HomePage() {
                                 {!failedImages['player3'] ? (
                                     <img 
                                         className="w-7 h-7 rounded-full border border-card-border object-cover" 
-                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" 
+                                        src="/images/avatar3.png" 
                                         alt="Player 3" 
                                         onError={() => handleImageError('player3')}
                                     />
@@ -212,7 +212,7 @@ export default function HomePage() {
                                     <div className="absolute inset-0 bg-black/30 hover:bg-black/10 transition-all z-10"></div>
                                     {!failedImages['hero_badminton'] ? (
                                         <img
-                                            src="https://images.unsplash.com/photo-1613918431201-4967b3f21846?w=640&q=80"
+                                            src="/images/badminton.png"
                                             alt="Badminton Court"
                                             className="w-full h-full object-cover"
                                             onError={() => handleImageError('hero_badminton')}
@@ -246,7 +246,7 @@ export default function HomePage() {
                                     <div className="relative w-full h-full overflow-hidden">
                                         {!failedImages['hero_turf'] ? (
                                             <img
-                                                src="https://images.unsplash.com/photo-1540747737956-37872404a87a?w=640&q=80"
+                                                src="/images/hero_turf.png"
                                                 alt="Premium Football Turf"
                                                 className="w-full h-full object-cover"
                                                 onError={() => handleImageError('hero_turf')}
@@ -291,7 +291,7 @@ export default function HomePage() {
                                     <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors z-10"></div>
                                     {!failedImages['hero_football'] ? (
                                         <img
-                                            src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=640&q=80"
+                                            src="/images/football.png"
                                             alt="Football Action"
                                             className="w-full h-full object-cover"
                                             onError={() => handleImageError('hero_football')}
@@ -502,12 +502,12 @@ export default function HomePage() {
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                         {[
-                            { name: 'Football', img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=640&q=80', count: 12, icon: Trophy, gradient: 'from-emerald-600 to-teal-800' },
-                            { name: 'Cricket', img: 'https://images.unsplash.com/photo-1531415080290-bc9b1310278b?w=640&q=80', count: 8, icon: Award, gradient: 'from-rose-600 to-red-800' },
-                            { name: 'Badminton', img: 'https://images.unsplash.com/photo-1613918431201-4967b3f21846?w=640&q=80', count: 15, icon: Flame, gradient: 'from-indigo-600 to-violet-800' },
-                            { name: 'Swimming', img: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=640&q=80', count: 6, icon: HeartHandshake, gradient: 'from-sky-500 to-cyan-700' },
-                            { name: 'Tennis', img: 'https://images.unsplash.com/photo-1622279457486-62dcc4a4b1fa?w=640&q=80', count: 4, icon: Shield, gradient: 'from-lime-500 to-green-700' },
-                            { name: 'Basketball', img: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=640&q=80', count: 5, icon: Zap, gradient: 'from-amber-600 to-orange-800' }
+                            { name: 'Football', img: '/images/football.png', count: 12, icon: Trophy, gradient: 'from-emerald-600 to-teal-800' },
+                            { name: 'Cricket', img: '/images/cricket.png', count: 8, icon: Award, gradient: 'from-rose-600 to-red-800' },
+                            { name: 'Badminton', img: '/images/badminton.png', count: 15, icon: Flame, gradient: 'from-indigo-600 to-violet-800' },
+                            { name: 'Swimming', img: '/images/swimming.png', count: 6, icon: HeartHandshake, gradient: 'from-sky-500 to-cyan-700' },
+                            { name: 'Tennis', img: '/images/tennis.png', count: 4, icon: Shield, gradient: 'from-lime-500 to-green-700' },
+                            { name: 'Basketball', img: '/images/basketball.png', count: 5, icon: Zap, gradient: 'from-amber-600 to-orange-800' }
                         ].map((category) => {
                             const SportIcon = category.icon;
                             const isFailed = failedImages[`category_${category.name}`];
