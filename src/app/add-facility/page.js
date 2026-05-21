@@ -347,13 +347,11 @@ export default function AddFacilityPage() {
                                     </button>
                                 </div>
                             )}
-                        </div>
-
-                        {/* Available Time Slots */}
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-muted flex items-center">
-                                <Clock className="w-4 h-4 mr-1.5 text-primary" />
-                                Available Slots (Select at least one)
+                        </div>                        {/* Available Time Slots */}
+                        <div className="space-y-3">
+                            <label className="text-xs font-bold text-muted uppercase tracking-wider block flex items-center">
+                                <Clock className="w-4 h-4 mr-1.5 text-primary/70" />
+                                Available Time Slots <span className="text-red-500 ml-0.5">*</span>
                             </label>
                             <div className="flex flex-wrap gap-2">
                                 {TIME_SLOTS.map((slot) => {
@@ -363,13 +361,14 @@ export default function AddFacilityPage() {
                                             type="button"
                                             key={slot}
                                             onClick={() => handleSlotToggle(slot)}
-                                            className={`px-4 py-2 rounded-xl text-xs font-medium border transition-all ${
+                                            className={`px-3.5 py-2.5 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer flex items-center space-x-1.5 ${
                                                 selected
-                                                    ? 'bg-primary text-background border-transparent'
-                                                    : 'glass border-glass-border hover:bg-glass-border/30 text-muted'
+                                                    ? 'bg-primary text-background border-transparent shadow-md scale-98'
+                                                    : 'glass border-glass-border hover:bg-glass-border/30 text-muted hover:text-foreground'
                                             }`}
                                         >
-                                            {slot}
+                                            <span className={`w-1.5 h-1.5 rounded-full ${selected ? 'bg-background' : 'bg-muted/50'}`}></span>
+                                            <span>{slot}</span>
                                         </button>
                                     );
                                 })}
@@ -377,18 +376,22 @@ export default function AddFacilityPage() {
                         </div>
 
                         {/* Description */}
-                        <div className="space-y-1">
-                            <label className="text-sm font-medium text-muted flex items-center">
-                                <FileText className="w-4 h-4 mr-1.5 text-primary" />
+                        <div className="space-y-2 group">
+                            <label className="text-xs font-bold text-muted uppercase tracking-wider block">
                                 Facility Description
                             </label>
-                            <textarea
-                                rows="4"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                placeholder="Describe facility amenities, rules, and details..."
-                                className="block w-full px-3 py-2.5 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                            />
+                            <div className="relative">
+                                <div className="absolute top-3.5 left-3.5 text-muted pointer-events-none">
+                                    <FileText className="w-4 h-4" />
+                                </div>
+                                <textarea
+                                    rows="4"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    placeholder="Describe facility amenities, rules, parking, and details..."
+                                    className="block w-full pl-10 pr-4 py-3 rounded-xl border border-glass-border bg-card/25 text-foreground placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 text-sm shadow-sm hover:bg-card/40 resize-none"
+                                />
+                            </div>
                         </div>
 
                         {/* Auto-filled owner info */}
@@ -400,12 +403,17 @@ export default function AddFacilityPage() {
                         <button
                             type="submit"
                             disabled={submitting}
-                            className="w-full py-3.5 rounded-xl bg-primary text-background hover:bg-primary-hover font-bold text-sm shadow-md transition-all duration-200 flex justify-center items-center cursor-pointer"
+                            className="w-full py-4 rounded-xl bg-primary text-background hover:bg-primary-hover font-extrabold text-sm shadow-lg hover:shadow-xl active:scale-98 transition-all duration-200 flex justify-center items-center cursor-pointer group"
                         >
                             {submitting ? (
                                 <div className="w-5 h-5 border-2 border-background border-t-transparent rounded-full animate-spin"></div>
                             ) : (
-                                'Add Facility'
+                                <span className="flex items-center justify-center space-x-1.5">
+                                    <span>List My Venue</span>
+                                    <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </span>
                             )}
                         </button>
                     </form>
