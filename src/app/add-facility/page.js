@@ -268,41 +268,83 @@ export default function AddFacilityPage() {
                                         className="block w-full pl-10 pr-4 py-3 rounded-xl border border-glass-border bg-card/25 text-foreground placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 text-sm shadow-sm hover:bg-card/40"
                                     />
                                 </div>
-                            </div>
-
-                            {/* Image Upload */}
-                            <div className="space-y-1">
-                                <label className="text-sm font-medium text-muted flex items-center">
-                                    <ImageIcon className="w-4 h-4 mr-1.5 text-primary" />
-                                    Upload Image (ImgBB)
+                            </div>                            {/* Image Upload */}
+                            <div className="space-y-2 group">
+                                <label className="text-xs font-bold text-muted uppercase tracking-wider block">
+                                    Upload Venue Image
                                 </label>
-                                <div className="flex space-x-2">
+                                <div className="relative border-2 border-dashed border-glass-border hover:border-primary/30 rounded-xl p-4 bg-card/15 hover:bg-card/25 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer min-h-[92px] group">
                                     <input
                                         type="file"
                                         accept="image/*"
                                         onChange={handleImageUpload}
-                                        className="block w-full text-xs text-muted file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 cursor-pointer"
+                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                                     />
-                                    {uploadingImage && (
-                                        <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin self-center"></div>
-                                    )}
+                                    <div className="flex flex-col items-center space-y-2 text-center pointer-events-none">
+                                        {uploadingImage ? (
+                                            <>
+                                                <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
+                                                <p className="text-xs font-medium text-muted">Uploading to ImgBB...</p>
+                                            </>
+                                        ) : imageUrl ? (
+                                            <>
+                                                <div className="p-2 rounded-full bg-success/15 text-success">
+                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+                                                <p className="text-xs font-semibold text-success">Image Uploaded!</p>
+                                                <p className="text-[10px] text-muted">Click or drag to change image</p>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className="p-2 rounded-full bg-primary/5 text-primary group-hover:scale-110 transition-transform duration-200">
+                                                    <ImageIcon className="w-5 h-5" />
+                                                </div>
+                                                <p className="text-xs font-semibold text-foreground">Drag & drop or click</p>
+                                                <p className="text-[10px] text-muted">Supports JPEG, PNG, WEBP</p>
+                                            </>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Manual Image URL if upload fails */}
-                        <div className="space-y-1">
-                            <label className="text-xs font-semibold text-muted block">Image URL (Direct link if you do not upload)</label>
-                            <input
-                                type="url"
-                                value={imageUrl}
-                                onChange={(e) => setImageUrl(e.target.value)}
-                                placeholder="https://example.com/photo.jpg"
-                                className="block w-full px-3 py-2 rounded-xl border border-card-border bg-card/50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
-                            />
+                        <div className="space-y-2 group">
+                            <label className="text-xs font-bold text-muted uppercase tracking-wider block">
+                                Or Provide Direct Image URL
+                            </label>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted group-focus-within:text-primary transition-colors duration-200">
+                                    <ImageIcon className="w-4 h-4" />
+                                </div>
+                                <input
+                                    type="url"
+                                    value={imageUrl}
+                                    onChange={(e) => setImageUrl(e.target.value)}
+                                    placeholder="https://images.unsplash.com/photo-..."
+                                    className="block w-full pl-10 pr-4 py-3 rounded-xl border border-glass-border bg-card/25 text-foreground placeholder-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary transition-all duration-200 text-sm shadow-sm hover:bg-card/40"
+                                />
+                            </div>
                             {imageUrl && (
-                                <div className="mt-2 relative w-32 h-20 rounded-lg overflow-hidden border border-glass-border">
-                                    <img src={imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                                <div className="mt-3 flex items-center space-x-3 p-2.5 rounded-xl bg-glass-border/5 border border-glass-border/30 max-w-sm">
+                                    <div className="relative w-16 h-10 rounded-lg overflow-hidden border border-glass-border shadow-inner flex-shrink-0">
+                                        <img src={imageUrl} alt="Mini Preview" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <p className="text-xs font-semibold text-foreground truncate">Selected Image</p>
+                                        <span className="text-[10px] text-muted flex items-center">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-success mr-1"></span> Ready to list
+                                        </span>
+                                    </div>
+                                    <button 
+                                        type="button"
+                                        onClick={() => setImageUrl('')}
+                                        className="text-muted hover:text-red-500 p-1.5 rounded-lg hover:bg-red-500/10 transition-colors text-xs font-medium"
+                                    >
+                                        Clear
+                                    </button>
                                 </div>
                             )}
                         </div>
