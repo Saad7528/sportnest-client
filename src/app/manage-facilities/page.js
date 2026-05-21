@@ -207,8 +207,27 @@ export default function ManageFacilitiesPage() {
                         <tbody className="divide-y divide-glass-border/30">
                             {facilities.map((facility, index) => (
                                 <tr key={facility._id} className="hover:bg-glass-border/10 transition-colors">
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
-                                        {facility.name} (Sport: {facility.facility_type})
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="flex items-center space-x-4">
+                                            <div className="flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-glass-border/40 shadow-sm">
+                                                <img 
+                                                    src={facility.image_url || 'https://images.unsplash.com/photo-1540747737956-37872404a87a?w=800&auto=format&fit=crop&q=60'} 
+                                                    alt={facility.name} 
+                                                    className="w-full h-full object-cover"
+                                                    onError={(e) => {
+                                                        e.target.src = 'https://images.unsplash.com/photo-1540747737956-37872404a87a?w=800&auto=format&fit=crop&q=60';
+                                                    }}
+                                                />
+                                            </div>
+                                            <div className="flex flex-col">
+                                                <span className="font-semibold text-foreground text-sm line-clamp-1">
+                                                    {facility.name}
+                                                </span>
+                                                <span className="inline-flex self-start items-center px-2 py-0.5 mt-1 rounded text-[10px] font-bold bg-primary/10 text-primary border border-primary/20 uppercase tracking-wider">
+                                                    {facility.facility_type}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-muted">
                                         Location Placeholder
