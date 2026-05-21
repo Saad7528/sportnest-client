@@ -229,14 +229,23 @@ export default function ManageFacilitiesPage() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted">
-                                        Location Placeholder
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="flex items-center space-x-2 text-sm text-muted font-medium">
+                                            <MapPin className="w-4 h-4 text-primary shrink-0" />
+                                            <span className="line-clamp-1">{facility.location}</span>
+                                        </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted">
-                                        Capacity Placeholder
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="flex items-center space-x-2 text-sm text-muted font-medium">
+                                            <Users className="w-4 h-4 text-primary shrink-0" />
+                                            <span>{facility.capacity} Persons</span>
+                                        </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted">
-                                        Price Placeholder
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="flex items-center space-x-1.5 text-sm font-semibold text-foreground">
+                                            <DollarSign className="w-4 h-4 text-primary shrink-0" />
+                                            <span>৳ {facility.price_per_hour} <span className="text-[10px] text-muted font-medium">/ hr</span></span>
+                                        </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         Actions Placeholder
