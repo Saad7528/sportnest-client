@@ -14,6 +14,11 @@ export default function HomePage() {
     const [loading, setLoading] = useState(true);
     const [selectedSlot, setSelectedSlot] = useState(0);
     const [mockBooked, setMockBooked] = useState(false);
+    const [failedImages, setFailedImages] = useState({});
+
+    const handleImageError = (imgKey) => {
+        setFailedImages(prev => ({ ...prev, [imgKey]: true }));
+    };
 
     const handleMockBook = () => {
         setMockBooked(true);
@@ -99,9 +104,36 @@ export default function HomePage() {
                             className="flex items-center gap-3"
                         >
                             <div className="flex -space-x-2.5">
-                                <img className="w-7 h-7 rounded-full border border-card-border object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&q=80" alt="Player 1" />
-                                <img className="w-7 h-7 rounded-full border border-card-border object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Player 2" />
-                                <img className="w-7 h-7 rounded-full border border-card-border object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Player 3" />
+                                {!failedImages['player1'] ? (
+                                    <img 
+                                        className="w-7 h-7 rounded-full border border-card-border object-cover" 
+                                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&q=80" 
+                                        alt="Player 1" 
+                                        onError={() => handleImageError('player1')}
+                                    />
+                                ) : (
+                                    <div className="w-7 h-7 rounded-full border border-card-border bg-blue-600 font-bold text-[9px] text-white flex items-center justify-center">PB</div>
+                                )}
+                                {!failedImages['player2'] ? (
+                                    <img 
+                                        className="w-7 h-7 rounded-full border border-card-border object-cover" 
+                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" 
+                                        alt="Player 2" 
+                                        onError={() => handleImageError('player2')}
+                                    />
+                                ) : (
+                                    <div className="w-7 h-7 rounded-full border border-card-border bg-pink-600 font-bold text-[9px] text-white flex items-center justify-center">AM</div>
+                                )}
+                                {!failedImages['player3'] ? (
+                                    <img 
+                                        className="w-7 h-7 rounded-full border border-card-border object-cover" 
+                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" 
+                                        alt="Player 3" 
+                                        onError={() => handleImageError('player3')}
+                                    />
+                                ) : (
+                                    <div className="w-7 h-7 rounded-full border border-card-border bg-amber-600 font-bold text-[9px] text-white flex items-center justify-center">UB</div>
+                                )}
                                 <div className="w-7 h-7 rounded-full border border-card-border bg-primary text-background text-[10px] font-black flex items-center justify-center shadow-md">
                                     +5k
                                 </div>
@@ -178,11 +210,18 @@ export default function HomePage() {
                                     className="absolute left-4 top-12 w-[180px] sm:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden border border-glass-border/40 shadow-lg -rotate-12 cursor-pointer z-10"
                                 >
                                     <div className="absolute inset-0 bg-black/30 hover:bg-black/10 transition-all z-10"></div>
-                                    <img
-                                        src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=400&q=80"
-                                        alt="Badminton Court"
-                                        className="w-full h-full object-cover"
-                                    />
+                                    {!failedImages['hero_badminton'] ? (
+                                        <img
+                                            src="https://images.unsplash.com/photo-1613918431201-4967b3f21846?w=640&q=80"
+                                            alt="Badminton Court"
+                                            className="w-full h-full object-cover"
+                                            onError={() => handleImageError('hero_badminton')}
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-indigo-600 to-violet-800 flex items-center justify-center">
+                                            <Flame className="w-10 h-10 text-white/35 animate-pulse" />
+                                        </div>
+                                    )}
                                     <div className="absolute bottom-3 left-3 z-20 text-white">
                                         <p className="text-[9px] uppercase font-bold tracking-wider text-slate-300">Indoor Arena</p>
                                         <h4 className="text-xs font-black">Elite Badminton</h4>
@@ -205,11 +244,18 @@ export default function HomePage() {
                                     <div className="absolute inset-0 bg-gradient-to-tr from-secondary/5 via-transparent to-white/10 pointer-events-none z-20"></div>
 
                                     <div className="relative w-full h-full overflow-hidden">
-                                        <img
-                                            src="https://images.unsplash.com/photo-1540747737956-37872404a87a?w=600&auto=format&fit=crop&q=80"
-                                            alt="Premium Football Turf"
-                                            className="w-full h-full object-cover"
-                                        />
+                                        {!failedImages['hero_turf'] ? (
+                                            <img
+                                                src="https://images.unsplash.com/photo-1540747737956-37872404a87a?w=640&q=80"
+                                                alt="Premium Football Turf"
+                                                className="w-full h-full object-cover"
+                                                onError={() => handleImageError('hero_turf')}
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full bg-gradient-to-br from-emerald-600 to-teal-800 flex items-center justify-center">
+                                                <Trophy className="w-14 h-14 text-white/35 animate-bounce" />
+                                            </div>
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-10"></div>
 
                                         {/* Premium Live Label */}
@@ -243,11 +289,18 @@ export default function HomePage() {
                                     className="absolute right-2 bottom-8 w-[140px] sm:w-[170px] aspect-[4/3] rounded-2xl overflow-hidden border border-glass-border/40 shadow-lg rotate-8 cursor-pointer z-20"
                                 >
                                     <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors z-10"></div>
-                                    <img
-                                        src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&q=80"
-                                        alt="Football Action"
-                                        className="w-full h-full object-cover"
-                                    />
+                                    {!failedImages['hero_football'] ? (
+                                        <img
+                                            src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=640&q=80"
+                                            alt="Football Action"
+                                            className="w-full h-full object-cover"
+                                            onError={() => handleImageError('hero_football')}
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-green-600 to-emerald-800 flex items-center justify-center">
+                                            <Zap className="w-8 h-8 text-white/35 animate-pulse" />
+                                        </div>
+                                    )}
                                     <div className="absolute top-3 right-3 z-20 bg-emerald-500 text-white font-extrabold text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded">
                                         Active
                                     </div>
@@ -449,30 +502,41 @@ export default function HomePage() {
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                         {[
-                            { name: 'Football', img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=300&q=80', count: 12 },
-                            { name: 'Cricket', img: 'https://images.unsplash.com/photo-1531415080290-bc9b1310278b?w=300&q=80', count: 8 },
-                            { name: 'Badminton', img: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=300&q=80', count: 15 },
-                            { name: 'Swimming', img: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=300&q=80', count: 6 },
-                            { name: 'Tennis', img: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=300&q=80', count: 4 },
-                            { name: 'Basketball', img: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=300&q=80', count: 5 }
-                        ].map((category) => (
-                            <Link
-                                key={category.name}
-                                href={`/facilities?type=${encodeURIComponent(category.name)}`}
-                                className="relative rounded-xl overflow-hidden h-36 group border border-card-border shadow-sm transition-all"
-                            >
-                                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 z-10 transition-colors"></div>
-                                <img
-                                    src={category.img}
-                                    alt={category.name}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 z-20 flex flex-col justify-end p-4 text-white">
-                                    <h3 className="font-bold text-sm tracking-tight">{category.name}</h3>
-                                    <p className="text-[10px] text-slate-300">{category.count}+ Venues</p>
-                                </div>
-                            </Link>
-                        ))}
+                            { name: 'Football', img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=640&q=80', count: 12, icon: Trophy, gradient: 'from-emerald-600 to-teal-800' },
+                            { name: 'Cricket', img: 'https://images.unsplash.com/photo-1531415080290-bc9b1310278b?w=640&q=80', count: 8, icon: Award, gradient: 'from-rose-600 to-red-800' },
+                            { name: 'Badminton', img: 'https://images.unsplash.com/photo-1613918431201-4967b3f21846?w=640&q=80', count: 15, icon: Flame, gradient: 'from-indigo-600 to-violet-800' },
+                            { name: 'Swimming', img: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=640&q=80', count: 6, icon: HeartHandshake, gradient: 'from-sky-500 to-cyan-700' },
+                            { name: 'Tennis', img: 'https://images.unsplash.com/photo-1622279457486-62dcc4a4b1fa?w=640&q=80', count: 4, icon: Shield, gradient: 'from-lime-500 to-green-700' },
+                            { name: 'Basketball', img: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=640&q=80', count: 5, icon: Zap, gradient: 'from-amber-600 to-orange-800' }
+                        ].map((category) => {
+                            const SportIcon = category.icon;
+                            const isFailed = failedImages[`category_${category.name}`];
+                            return (
+                                <Link
+                                    key={category.name}
+                                    href={`/facilities?type=${encodeURIComponent(category.name)}`}
+                                    className="relative rounded-xl overflow-hidden h-36 group border border-card-border shadow-sm transition-all"
+                                >
+                                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 z-10 transition-colors"></div>
+                                    {!isFailed ? (
+                                        <img
+                                            src={category.img}
+                                            alt={category.name}
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            onError={() => handleImageError(`category_${category.name}`)}
+                                        />
+                                    ) : (
+                                        <div className={`w-full h-full bg-gradient-to-br ${category.gradient} transition-transform duration-500 group-hover:scale-105 flex items-center justify-center`}>
+                                            <SportIcon className="w-12 h-12 text-white/20 absolute -right-2 -bottom-2 group-hover:scale-110 duration-500 transition-transform" />
+                                        </div>
+                                    )}
+                                    <div className="absolute inset-0 z-20 flex flex-col justify-end p-4 text-white">
+                                        <h3 className="font-bold text-sm tracking-tight">{category.name}</h3>
+                                        <p className="text-[10px] text-slate-300">{category.count}+ Venues</p>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
