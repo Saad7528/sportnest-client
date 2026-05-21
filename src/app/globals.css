@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafafa;
+  --foreground: #090d16;
+  --card: #ffffff;
+  --card-border: #e4e4e7;
+  --primary: #18181b;
+  --primary-hover: #27272a;
+  --secondary: #3b82f6;
+  --muted: #71717a;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(228, 228, 231, 0.6);
+  --success: #16a34a;
+}
+
+.dark {
+  --background: #08090d;
+  --foreground: #f4f4f5;
+  --card: #0f1016;
+  --card-border: #1c1d29;
+  --primary: #ffffff;
+  --primary-hover: #f4f4f5;
+  --secondary: #60a5fa;
+  --muted: #a1a1aa;
+  --glass-bg: rgba(15, 16, 22, 0.85);
+  --glass-border: rgba(28, 29, 41, 0.6);
+  --success: #10b981;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Unique design elements - Grid backgrounds, custom cards, custom buttons */
+
+/* Subtly pattern background */
+.grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(120, 119, 198, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(120, 119, 198, 0.03) 1px, transparent 1px);
+}
+
+.dark .grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+}
+
+/* Premium Card pattern */
+.premium-card {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover {
+  border-color: var(--glass-border);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+.dark .premium-card:hover {
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 0 12px 40px -15px rgba(0, 0, 0, 0.4);
+}
+
+/* Minimalist border glass */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Premium glowing spotlights */
+.glow-orb {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 100%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.dark .glow-orb {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%);
+}
+
+.glow-orb-secondary {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, rgba(99, 102, 241, 0.03) 60%, transparent 100%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+/* Accent gradient text */
+.accent-gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .accent-gradient-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
