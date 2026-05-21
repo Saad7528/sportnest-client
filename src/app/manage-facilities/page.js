@@ -183,58 +183,49 @@ export default function ManageFacilitiesPage() {
                     <p className="text-sm text-muted">Get started by adding a sports facility.</p>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {facilities.map((facility, index) => (
-                        <motion.div
-                            key={facility._id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: index * 0.05 }}
-                            className="rounded-2xl glass border border-glass-border p-6 flex flex-col justify-between space-y-4 hover:shadow-lg transition-all"
-                        >
-                            <div className="space-y-2">
-                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-                                    {facility.facility_type}
-                                </span>
-                                <h3 className="text-xl font-bold tracking-tight line-clamp-1 text-foreground">
-                                    {facility.name}
-                                </h3>
-                            </div>
-
-                            <div className="space-y-2 pt-2 border-t border-glass-border/40 text-sm text-muted">
-                                <div className="flex items-center space-x-2">
-                                    <MapPin className="w-4 h-4 text-primary" />
-                                    <span>Location: {facility.location}</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Users className="w-4 h-4 text-primary" />
-                                    <span>Capacity: {facility.capacity} Persons</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <DollarSign className="w-4 h-4 text-primary" />
-                                    <span>Price: <strong className="text-foreground">৳ {facility.price_per_hour}</strong> / hour</span>
-                                </div>
-                            </div>
-
-                            {/* Actions buttons */}
-                            <div className="pt-4 border-t border-glass-border/40 flex items-center justify-end space-x-2">
-                                <button
-                                    onClick={() => openEditModal(facility)}
-                                    className="p-2 px-4 rounded-xl border border-glass-border hover:bg-glass-border/30 text-xs font-semibold text-muted hover:text-foreground transition-all flex items-center cursor-pointer"
-                                >
-                                    <Edit className="w-4 h-4 mr-1.5" />
-                                    Edit
-                                </button>
-                                <button
-                                    onClick={() => handleDelete(facility._id)}
-                                    className="p-2 px-4 rounded-xl border border-red-500/20 hover:bg-red-500 hover:text-white text-xs font-semibold text-red-500 transition-all flex items-center cursor-pointer"
-                                >
-                                    <Trash2 className="w-4 h-4 mr-1.5" />
-                                    Delete
-                                </button>
-                            </div>
-                        </motion.div>
-                    ))}
+                <div className="overflow-x-auto rounded-2xl glass border border-glass-border shadow-lg">
+                    <table className="min-w-full divide-y divide-glass-border/40">
+                        <thead className="bg-glass-border/10">
+                            <tr>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-bold text-muted uppercase tracking-wider">
+                                    Facility
+                                </th>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-bold text-muted uppercase tracking-wider">
+                                    Location
+                                </th>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-bold text-muted uppercase tracking-wider">
+                                    Capacity
+                                </th>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-bold text-muted uppercase tracking-wider">
+                                    Price / Hr
+                                </th>
+                                <th scope="col" className="px-6 py-4 text-right text-xs font-bold text-muted uppercase tracking-wider">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-glass-border/30">
+                            {facilities.map((facility, index) => (
+                                <tr key={facility._id} className="hover:bg-glass-border/10 transition-colors">
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
+                                        {facility.name} (Sport: {facility.facility_type})
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted">
+                                        Location Placeholder
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted">
+                                        Capacity Placeholder
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-muted">
+                                        Price Placeholder
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        Actions Placeholder
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             )}
 
