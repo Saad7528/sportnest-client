@@ -80,7 +80,7 @@ export default function LoginPage() {
                                     type="email"
                                     required
                                     value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+
                                     placeholder="yourname@gmail.com"
                                     className="block w-full pl-9 pr-3 py-2.5 rounded-lg border border-card-border bg-card/40 text-foreground placeholder-muted/60 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all text-sm"
                                 />
@@ -97,7 +97,7 @@ export default function LoginPage() {
                                     type="password"
                                     required
                                     value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+
                                     placeholder="••••••••"
                                     className="block w-full pl-9 pr-3 py-2.5 rounded-lg border border-card-border bg-card/40 text-foreground placeholder-muted/60 focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all text-sm"
                                 />
