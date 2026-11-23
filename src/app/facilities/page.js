@@ -102,7 +102,7 @@ function FacilitiesContent() {
                         </h3>
                         {(search || selectedTypes.length > 0) && (
                             <button
-                                onClick={() => {
+
                                     setSearch('');
                                     setSelectedTypes([]);
                                 }}
@@ -123,7 +123,7 @@ function FacilitiesContent() {
                             <input
                                 type="text"
                                 value={search}
-                                onChange={(e) => setSearch(e.target.value)}
+
                                 placeholder="Name or location..."
                                 className="block w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-card-border bg-background text-foreground placeholder-muted focus:outline-none focus:ring-1 focus:ring-secondary focus:border-transparent transition-all"
                             />
@@ -139,7 +139,7 @@ function FacilitiesContent() {
                                     <input
                                         type="checkbox"
                                         checked={selectedTypes.includes(type)}
-                                        onChange={() => handleTypeToggle(type)}
+
                                         className="rounded border-card-border text-secondary focus:ring-secondary w-3.5 h-3.5"
                                     />
                                     <span>{type}</span>
@@ -177,7 +177,7 @@ function FacilitiesContent() {
                                             src={facility.image_url || 'https://images.unsplash.com/photo-1540747737956-37872404a87a?w=800&auto=format&fit=crop&q=60'}
                                             alt={facility.name}
                                             className="w-full h-full object-cover transition-transform duration-500 hover:scale-102"
-                                            onError={(e) => {
+
                                                 e.target.src = 'https://images.unsplash.com/photo-1540747737956-37872404a87a?w=800&auto=format&fit=crop&q=60';
                                             }}
                                         />
@@ -220,7 +220,7 @@ function FacilitiesContent() {
                                                 <span className="text-base font-bold text-foreground">৳ {facility.price_per_hour}</span>
                                             </div>
                                             <button
-                                                onClick={() => handleBookNow(facility._id)}
+
                                                 className="px-4 py-2 rounded-xl bg-primary text-background font-semibold text-xs hover:opacity-90 transition-all"
                                             >
                                                 Book Now
