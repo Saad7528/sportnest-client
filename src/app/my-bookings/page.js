@@ -141,7 +141,7 @@ export default function MyBookingsPage() {
                                     Authorized creator cancel only
                                 </p>
                                 <button
-                                    onClick={() => handleCancelBooking(booking._id)}
+
                                     className="p-2.5 text-red-500 hover:text-white hover:bg-red-500 rounded-xl transition-all border border-red-500/20 hover:border-transparent flex items-center justify-center"
                                     title="Cancel booking"
                                 >
