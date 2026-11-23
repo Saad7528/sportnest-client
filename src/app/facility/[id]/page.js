@@ -198,7 +198,7 @@ export default function FacilityDetailsPage({ params }) {
                                     type="date"
                                     required
                                     value={bookingDate}
-                                    onChange={(e) => setBookingDate(e.target.value)}
+
                                     min={new Date().toISOString().split('T')[0]} // block past dates
                                     className="block w-full px-3 py-2 text-sm rounded-lg border border-card-border bg-card/40 text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all"
                                 />
@@ -213,10 +213,10 @@ export default function FacilityDetailsPage({ params }) {
                                 <select
                                     required
                                     value={timeSlot}
-                                    onChange={(e) => setTimeSlot(e.target.value)}
+
                                     className="block w-full px-3 py-2 text-sm rounded-lg border border-card-border bg-card/40 text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all"
                                 >
-                                    {facility.available_slots && facility.available_slots.map((slot) => (
+
                                         <option key={slot} value={slot}>
                                             {slot}
                                         </option>
@@ -236,7 +236,7 @@ export default function FacilityDetailsPage({ params }) {
                                     min="1"
                                     max="12"
                                     value={hours}
-                                    onChange={(e) => setHours(Math.max(1, parseInt(e.target.value) || 1))}
+
                                     className="block w-full px-3 py-2 text-sm rounded-lg border border-card-border bg-card/40 text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-transparent transition-all"
                                 />
                             </div>
